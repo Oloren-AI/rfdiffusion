@@ -1,7 +1,7 @@
 # Variables
-EXTENSION_NAME = "[NAME]"
+EXTENSION_NAME = "rfdiffusion"
 DOCKER_IMAGE = ${EXTENSION_NAME}:latest
-PORT = 8077
+PORT = 8992
 
 # Phony targets
 .PHONY: docker docker-build docker-run
@@ -21,7 +21,7 @@ docker-build:
 docker-run:
 	@echo "Running Docker container $(DOCKER_IMAGE)"
 	@echo "Open http://localhost:$(PORT) in your browser"
-	docker run -it -p $(PORT):80 -v $(pwd):/app $(DOCKER_IMAGE)
+	docker run --gpus all -it -p $(PORT):80 -v $(pwd):/app $(DOCKER_IMAGE)
 
 # Docker exec target: opens a bash terminal inside of a running container for this image
 docker-exec:
